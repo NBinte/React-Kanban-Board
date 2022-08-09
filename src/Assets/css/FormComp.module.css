@@ -1,0 +1,24 @@
+.formClass {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.formInput {
+    display: inline;
+    width: auto;
+    border-radius: 0;
+    margin-right: 1rem;
+    font-family: "Arimo", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.formButton {
+    border-radius: 0;
+    font-family: "Arimo", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff8b77;
+    background-color: #ffffff;
+}
