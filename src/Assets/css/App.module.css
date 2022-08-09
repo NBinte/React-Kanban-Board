@@ -1,6 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 .app {
+    background-color: #d7ffff;
     position: absolute;
-    top: 50%;
+    top: 10%;
+    padding-bottom: 8rem;
+    font-family: "Arimo", sans-serif;
+}
+
+.boardColumn {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    max-width: 20%;
+}
+
+.boardRow {
+    display: flex;
+    justify-content: center;
+}
+
+.columnHeader {
+    margin: 0;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: #ff6347;
+}
+
+.columnData {
+    background-color: #ffffff;
+    padding: 1rem;
+    height: 500px;
+}
+
+.cardStyle {
+    margin: 1rem;
 }
