@@ -1,13 +1,20 @@
 //component for form
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import style from "../Assets/css/FormComp.module.css";
 
-const FormComp = () => {
+const FormComp = ({ tasks, setTasks }) => {
+    const [inputValue, setInputValue] = useState("");
+
     const handleSubmit = e => {
         e.preventDefault();
-        console.log("submit clicked");
+
+        if (inputValue) {
+            setTasks(tasks => {
+                return [...tasks, inputValue];
+            });
+        }
     };
 
     useEffect(() => {
@@ -21,9 +28,14 @@ const FormComp = () => {
                     id='task'
                     name='task'
                     type='text'
+                    value={inputValue}
                     placeholder='Write your task...'
                     className={style.formInput}
-                    onChange={e => console.log(e.target.value)}
+                    onChange={e => {
+                        setInputValue(prevValue => {
+                            return e.target.value;
+                        });
+                    }}
                 />
                 <Button className={style.formButton} variant='light' type='submit'>
                     Add
