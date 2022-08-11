@@ -11,8 +11,10 @@ const FormComp = ({ tasks, setTasks }) => {
         e.preventDefault();
 
         if (inputValue) {
+            let taskObject = { name: inputValue, category: "todo" };
+
             setTasks(tasks => {
-                return [...tasks, inputValue];
+                return [...tasks, taskObject];
             });
         }
     };
