@@ -46,10 +46,6 @@ const FormComp = ({ tasks, setTasks }) => {
         }
     };
 
-    useEffect(() => {
-        console.log("inside form useEffect");
-    }, []);
-
     return (
         <>
             <Form className={style.formClass} onSubmit={handleSubmit}>

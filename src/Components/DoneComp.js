@@ -1,3 +1,4 @@
+//component for done column
 import React from "react";
 import Card from "react-bootstrap/Card";
 import style from "../Assets/css/TodoComp.module.css";
@@ -14,7 +15,6 @@ const DoneComp = ({ tasks, handleOnDragOver, handleOnDrop, handleOnDragStart }) 
                     handleOnDrop(e, "done");
                 }}
             >
-               
                 {tasks?.map((eachTask, taskIndex) => {
                     if (eachTask.category == "done") {
                         let id = eachTask.id;

@@ -1,3 +1,4 @@
+//component for todo column
 import React from "react";
 import Card from "react-bootstrap/Card";
 import style from "../Assets/css/TodoComp.module.css";
