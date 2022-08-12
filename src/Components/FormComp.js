@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
+
 import style from "../Assets/css/FormComp.module.css";
 
 const FormComp = ({ tasks, setTasks }) => {
@@ -13,9 +15,34 @@ const FormComp = ({ tasks, setTasks }) => {
         if (inputValue) {
             let taskObject = { name: inputValue, category: "todo" };
 
-            setTasks(tasks => {
-                return [...tasks, taskObject];
-            });
+            const requestResponse = () => {
+                return axios
+                    .post(
+                        "http://127.0.0.1:8000/api/saveTask/" +
+                            taskObject.name +
+                            "/" +
+                            taskObject.category
+                    )
+                    .then(response => {
+                        return response;
+                    })
+                    .catch(error => {
+                        return error;
+                    });
+            };
+
+            const getResponse = async () => {
+                let response = await requestResponse();
+
+                if (response.data !== "exists") {
+                    let newTask = response.data;
+                    setTasks(tasks => {
+                        return [...tasks, ...newTask];
+                    });
+                }
+            };
+
+            getResponse();
         }
     };
 
