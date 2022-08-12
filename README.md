@@ -1,3 +1,11 @@
+## Instructions
+
+- Clone the project
+- Go to the project folder and run **_npm install_**
+- Keep running **_npm run dev_**
+- Go to http://localhost:3000/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
