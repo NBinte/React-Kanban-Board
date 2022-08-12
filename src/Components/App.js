@@ -5,18 +5,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormComp from "./FormComp";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 import style from "../Assets/css/App.module.css";
 
 const App = () => {
-    const [tasks, setTasks] = useState([
-        { name: "task1", category: "todo" },
-        { name: "task2", category: "todo" },
-        { name: "task3", category: "todo" },
-        { name: "task4", category: "todo" },
-        { name: "task5", category: "progress" },
-        { name: "task6", category: "done" }
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     const handleOnDragStart = (e, id) => {
         e.dataTransfer.setData("id", id);
@@ -41,8 +35,29 @@ const App = () => {
         });
     };
 
+    const requestResponse = () => {
+        return axios
+            .get("http://127.0.0.1:8000/api/getTasks")
+            .then(response => {
+                return response;
+            })
+            .catch(error => {
+                return error;
+            });
+    };
+
+    const getResponse = async () => {
+        const response = await requestResponse();
+
+        setTasks(tasks => {
+            return response.data;
+        });
+    };
+
     useEffect(() => {
         console.log("inside app useeffect");
+
+        getResponse();
     }, []);
 
     return (
@@ -66,17 +81,21 @@ const App = () => {
                         >
                             {tasks.map((eachTask, taskIndex) => {
                                 if (eachTask.category == "todo") {
-                                    let id = eachTask.name;
+                                    let id = eachTask.id;
                                     return (
                                         <Card
+                                            id={id}
                                             className={style.cardStyle}
                                             key={taskIndex}
                                             draggable='true'
                                             onDragStart={e => {
                                                 handleOnDragStart(e, id);
                                             }}
+                                            // onDragEnter={e => {
+                                            //     handleOnDragEnter(e, id);
+                                            // }}
                                         >
-                                            <Card.Body>{eachTask.name}</Card.Body>
+                                            <Card.Body>{eachTask.task_name}</Card.Body>
                                         </Card>
                                     );
                                 }
@@ -96,9 +115,10 @@ const App = () => {
                         >
                             {tasks.map((eachTask, taskIndex) => {
                                 if (eachTask.category == "progress") {
-                                    let id = eachTask.name;
+                                    let id = eachTask.id;
                                     return (
                                         <Card
+                                            id={id}
                                             className={style.cardStyle}
                                             key={taskIndex}
                                             draggable='true'
@@ -106,7 +126,7 @@ const App = () => {
                                                 handleOnDragStart(e, id);
                                             }}
                                         >
-                                            <Card.Body>{eachTask.name}</Card.Body>
+                                            <Card.Body>{eachTask.task_name}</Card.Body>
                                         </Card>
                                     );
                                 }
@@ -126,9 +146,10 @@ const App = () => {
                         >
                             {tasks.map((eachTask, taskIndex) => {
                                 if (eachTask.category == "done") {
-                                    let id = eachTask.name;
+                                    let id = eachTask.id;
                                     return (
                                         <Card
+                                            id={id}
                                             className={style.cardStyle}
                                             key={taskIndex}
                                             draggable='true'
@@ -136,7 +157,7 @@ const App = () => {
                                                 handleOnDragStart(e, id);
                                             }}
                                         >
-                                            <Card.Body>{eachTask.name}</Card.Body>
+                                            <Card.Body>{eachTask.task_name}</Card.Body>
                                         </Card>
                                     );
                                 }
