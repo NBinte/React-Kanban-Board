@@ -2,7 +2,7 @@
 
 - Clone the project
 - Go to the project folder and run **_npm install_**
-- Keep running **_npm run dev_**
+- Keep running **_npm start_**
 - Go to http://localhost:3000/
 
 
